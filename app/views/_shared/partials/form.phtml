@@ -1,0 +1,61 @@
+<?php
+extract( View::getVar() );
+
+foreach ($metadata as $o)
+{
+    $col = $o->Field;
+    if ( ! empty($skip) and in_array($col, $skip) ) continue;
+    $col_type = $o->Type;
+    $color_text = ($o->Key) ? 'red-text' : 'black-text';
+
+    if ( strstr($col_type, 'tinyint(') )
+    {
+        ?>
+        <div class="col s12 m6 l3 switch">
+            <label for="<?=$col?>">
+                <span class="<?=$color_text?>"><?=ucfirst(empty($labels)?$col:$labels[$col])?></span><br>
+                Off
+                <input<?php if ( ! empty($item) and $item->$col) echo ' checked'; ?> type="checkbox" id="<?=$col?>" name="<?=$col?>" value="1">
+                <span class="black lever"></span>
+                On
+            </label>
+        </div>
+        <?php
+    }
+    else if ( strstr($col, 'tags') )
+    {
+        ?>
+        <div class="col s12">
+            <label class="<?=$color_text?>"><?=ucfirst(empty($labels)?$col:$labels[$col])?></label>
+            <input type="text" name="tags" value="<?=empty($item)?'':$item->$col?>">
+        </div>
+        <?php
+    }
+    else if ( strstr($col_type, 'text') )
+    {
+        ?>
+        <div class="col s12">
+            <label class="<?=$color_text?>"><?=ucfirst(empty($labels)?$col:$labels[$col])?></label>
+            <textarea class="flow-text kuwy materialize-textarea" name="<?=$col?>"><?=empty($item)?'':$item->$col?></textarea>
+        </div>
+        <?php
+    }
+    else if ( strstr($col_type, 'date') )
+    {
+        ?>
+        <div class="col s12 m6 l3">
+            <label class="<?=$color_text?>" for="<?=$col?>"><?=ucfirst(empty($labels)?$col:$labels[$col])?></label>
+            <input type="text" class="datepicker" id="<?=$col?>" name="<?=$col?>" value="<?=empty($item)?'':$item->$col?>">
+        </div>
+        <?php
+    }
+    else
+    {
+        ?>
+        <div class="col s12 m6 l3">
+            <label class="<?=$color_text?>" for="<?=$col?>"><?=ucfirst(empty($labels)?$col:$labels[$col])?></label>
+            <input type="text" id="<?=$col?>" name="<?=$col?>" value="<?=empty($item)?'':$item->$col?>">
+        </div>
+        <?php
+    }
+}
