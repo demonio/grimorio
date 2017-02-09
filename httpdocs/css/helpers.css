@@ -1,8 +1,0 @@
-
-.mr50 { margin-right:50px; }
-
-.pa15 { padding:15px; }
-
-/* ENLAZAR BLOQUES */
-.box-link { overflow:hidden; position:relative; }
-.box-link a { height:100%; left:0; position:absolute; top:0; width:100%; }

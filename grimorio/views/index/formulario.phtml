@@ -1,0 +1,27 @@
+
+<form action="/" method="post">
+    <h3 class="col s12">Escribe tu hechizo en un pergamino</h3>
+
+    <?php View::partial('form', false, ['skip'=>array('id', 'estado', 'creado_at', 'modificado_in')]); ?>
+
+    <div class="col s12"></div>
+
+    <div class="col s12 m3 l3 mt10">
+        <button type="submit" class="all-width btn green darken-1" name="hechizos" value="crear">Crear</button>
+    </div>
+    <?php if ( ! empty($item->id) ) : ?>
+        <div class="col s12 m3 l3 mt10">
+            <a class="all-width btn blue darken-1" href="/index/index/<?=$item->id?>">Ver</a>
+        </div>
+        <div class="col s12 m3 l3 mt10">
+            <button type="submit" class="all-width btn orange darken-1" name="hechizos" value="editar">Editar</button>
+        </div>
+        <div class="col s12 m3 l3 mt10">
+            <button type="submit" class="all-width btn red darken-1" name="hechizos" value="eliminar">Eliminar</button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ( ! empty($item->id) ) : ?>
+        <input type="hidden" name="id" value="<?=$item->id?>">
+    <?php endif; ?>
+</form>
