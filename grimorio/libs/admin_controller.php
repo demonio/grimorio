@@ -23,11 +23,12 @@ class AdminController extends Controller
         //Código de auth y permisos
         //Será libre, pero añadiremos uno por defecto en breve
         //Posiblemente se cree una clase abstracta con lo que debe tener por defecto
+        View::template('kumbia');
     }
 
     final protected function finalize()
     {
-        
+
     }
 
 }

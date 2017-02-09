@@ -30,3 +30,5 @@ textarea.materialize-textarea { padding:0; }
 .btn { padding:0 0.5rem; }
 
 .row { margin-bottom:0; }
+
+#sidenav-overlay { display:none; }

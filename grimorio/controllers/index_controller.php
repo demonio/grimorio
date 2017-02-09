@@ -35,6 +35,7 @@ class IndexController extends AppController
     {
 		if ( ! Input::isAjax() ) exit( Redirect::to('') );
 		$this->metadata = (new Hechizos)->metadata();
+		View::setPath('hechizos');
     }
 
     /*public function eliminar($id)

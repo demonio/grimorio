@@ -18,6 +18,14 @@ class HechizosController extends AppController
     {
 		$this->items = (new Hechizos)->todos();
 		$this->item = (new Hechizos)->unoPorSlug($slug);
+
+		if ( ! $this->item )
+		{
+			$_SESSION['toast'][] = "El hechizo nombrado no puede ser hallado.";
+			header("Location: /");
+			#header("HTTP/2.0 404 Not Found");
+			#die('404');
+		}
 	}
 
 	#

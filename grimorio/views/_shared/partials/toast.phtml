@@ -1,0 +1,14 @@
+
+<script>
+$(function()
+{
+    <?php if ( ! empty($_SESSION['toast']) ) : ?>
+        // Materialize.toast(message, displayLength, className, completeCallback);
+        // 4000 is the duration of the toast
+        <?php foreach ($_SESSION['toast'] as $toast) : ?>
+            Materialize.toast('<?=$toast?>', 4000);
+        <?php endforeach;
+        unset($_SESSION['toast']);
+    endif; ?>
+});
+</script>

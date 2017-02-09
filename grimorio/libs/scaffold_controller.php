@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 /**
  * Controlador base para la construcción de CRUD para modelos rapidamente
  *
@@ -14,7 +14,7 @@ class ScaffoldController extends AdminController
 
     public function index($page=1)
     {
-        $this->data = Load::model($this->model)->paginate("page: $page", 'order: id desc');
+        $this->data = (new $this->model)->paginate("page: $page", 'order: id desc');
     }
 
     /**
@@ -24,7 +24,7 @@ class ScaffoldController extends AdminController
     {
         if (Input::hasPost($this->model)) {
 
-            $obj = Load::model($this->model);
+            $obj = new $this->model;
             //En caso que falle la operación de guardar
             if (!$obj->save(Input::post($this->model))) {
                 Flash::error('Falló Operación');
@@ -34,8 +34,8 @@ class ScaffoldController extends AdminController
             }
             return Redirect::to();
         }
-        // Solo es necesario para el autoForm
-        $this->{$this->model} = Load::model($this->model);
+        // Sólo es necesario para el autoForm
+        $this->{$this->model} = new $this->model;
     }
 
     /**
@@ -47,7 +47,7 @@ class ScaffoldController extends AdminController
 
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost($this->model)) {
-            $obj = Load::model($this->model);
+            $obj = new $this->model;
             if (!$obj->update(Input::post($this->model))) {
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
@@ -58,7 +58,7 @@ class ScaffoldController extends AdminController
         }
 
         //Aplicando la autocarga de objeto, para comenzar la edición
-        $this->{$this->model} = Load::model($this->model)->find((int) $id);
+        $this->{$this->model} = (new $this->model)->find((int) $id);
     }
 
     /**
@@ -66,7 +66,7 @@ class ScaffoldController extends AdminController
      */
     public function borrar($id)
     {
-        if (!Load::model($this->model)->delete((int) $id)) {
+        if (!(new $this->model)->delete((int) $id)) {
             Flash::error('Falló Operación');
         }
         //enrutando al index para listar los articulos
@@ -76,9 +76,9 @@ class ScaffoldController extends AdminController
     /**
      * Ver un Registro
      */
-    public function ver($id)
+    public function ver(int $id = 1)
     {
-        $this->data = Load::model($this->model)->find_first((int) $id);
+        $this->data = (new $this->model)->find_first((int) $id);
     }
 
 }
