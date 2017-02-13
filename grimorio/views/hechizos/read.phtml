@@ -23,7 +23,10 @@ $disabled = ($item->estado == '[PENDIENTE]') ? ' opacity-5 box-specimen' : '';
         </li>
         <li class="collection-item">
             <label>Código</label>
-            <pre class="line-numbers"><code class="language-php"><?=str_replace('<', '&lt;', $item->codigo)?></code></pre>
+            <?php $ext = pathinfo($item->nombre)['extension'];
+            $ext = ( ! $ext or $ext == 'phtml' ) ? 'php' : $ext;
+            ?>
+            <pre class="line-numbers"><code class="language-<?=$ext?>"><?=str_replace('<', '&lt;', $item->codigo)?></code></pre>
         </li>
         <li class="collection-item">
             <label>Autor</label>

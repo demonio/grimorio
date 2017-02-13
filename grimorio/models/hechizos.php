@@ -45,7 +45,7 @@ class Hechizos extends ActRecord
         $items = (new Hechizos)
             ->where('estado<>?', '[BORRADO]')
             ->order('creado_at DESC')
-            ->limit(5)
+            ->limit(10)
             ->all();
         foreach ($items as $item)
         {

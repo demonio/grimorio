@@ -36,7 +36,7 @@ foreach ($metadata as $o)
         ?>
         <div class="col s12">
             <label class="<?=$color_text?>"><?=ucfirst(empty($labels)?$col:$labels[$col])?></label>
-            <textarea class="flow-text kuwy materialize-textarea" name="<?=$col?>"><?=empty($item)?'':$item->$col?></textarea>
+            <textarea class="flow-text kuwy materialize-textarea" name="<?=$col?>"><?=empty($item)?'':str_replace('<', '&lt;', $item->$col)?></textarea>
         </div>
         <?php
     }

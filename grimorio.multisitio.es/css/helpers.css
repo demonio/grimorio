@@ -1,5 +1,6 @@
 
 /* MARGENES */
+.mb15 { margin-bottom:15px; } 
 .ml5 { margin-left:5px; }
 .ml15 { margin-left:15px; }
 .mr50 { margin-right:50px; }
@@ -26,6 +27,7 @@
 /* DESACTIVADOS */
 .opacity-5 { opacity:0.5; }
 
+/* TEXTO INCLINADO ESPECIMEN */
 .box-specimen { position:relative; }
 .specimen-text
 {

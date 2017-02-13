@@ -9,10 +9,11 @@ extract( View::getVar() );
         <?php foreach ($items as $grimorio=>$a) : ?>
             <li class="collection-header filtered"><h4 class="blue-text text-darken-1"><?=$grimorio?>/</h4></li>
             <?php foreach ($a as $o) :
-                $disabled = ($o->estado == '[PENDIENTE]') ? ' grey-text italic' : '' ?>
+                $disabled = ($o->estado == '[PENDIENTE]') ? ' grey-text italic' : '';
+                $title = ($o->capitulo) ? "$grimorio/$o->capitulo/$o->nombre" : "$grimorio/$o->nombre"; ?>
                 <li class="box-link collection-item filtered<?=$disabled?>">
                     <?=$o->nombre?>
-                    <a href="/hechizos/read/<?=$o->slug?>"></a>
+                    <a href="/hechizos/read/<?=$o->slug?>" title="<?=$title?>"></a>
                 </li>
             <?php endforeach; ?>
         <?php endforeach; ?>
