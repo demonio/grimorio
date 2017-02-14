@@ -16,13 +16,13 @@ $(window).scroll(function()
     var top = $(this).scrollTop();
     if (top > 0)
     {
-        $('img[src*="wizard.png"]').addClass('hide');
+        $('img[src*="wizard.png"]').parent().addClass('hide');
         $('.scroll-buttons').removeClass('hide');
     }
     else
     {
         $('.scroll-buttons').addClass('hide');
-        $('img[src*="wizard.png"]').removeClass('hide');
+        $('img[src*="wizard.png"]').parent().removeClass('hide');
     }
 });
 
