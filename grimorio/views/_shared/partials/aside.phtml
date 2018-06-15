@@ -1,0 +1,24 @@
+<?php
+extract( View::getVar() );
+?>
+<aside class="col s0 m4 l3">
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <?php View::partial('filter', false, ['filter'=>'.filtered']); ?>
+        </li>
+        <?php foreach ($items as $grimorio=>$a) : ?>
+            <li class="collection-header filtered">
+                <h4 class="blue-text text-darken-1"><?=$grimorio?>/</h4>
+            </li>
+            <?php foreach ($a as $o) :
+                $disabled = ($o->estado == '[PENDIENTE]') ? ' grey-text italic' : '';
+                $selected = ( ! empty($item) and $item->id == $o->id) ? ' active' : '';
+                $title = ($o->capitulo) ? "$grimorio/$o->capitulo/$o->nombre" : "$grimorio/$o->nombre"; ?>
+                <li class="box-link collection-item filtered<?=$disabled . $selected?>">
+                    <?=$o->nombre?>
+                    <a href="/hechizos/read/<?=$o->slug?>" title="<?=$title?>"></a>
+                </li>
+            <?php endforeach;
+        endforeach; ?>
+    </ul>
+</aside>

@@ -1,0 +1,18 @@
+
+<a class="btn-floating btn-large load-modal blue darken-1 add-button" href="/index/formulario">
+    <i class="material-icons">add</i>
+</a>
+
+<footer class="col s12 red lighten-1 valign-wrapper">
+    <small class="center-container">
+        <?=$_SERVER['REMOTE_ADDR']?> —
+        <?=_::n(microtime(1)-$_SERVER['REQUEST_TIME_FLOAT'], 3 ) . ' s'?> —
+        <?=_::n(memory_get_usage()/1048576, 2) . ' MB'?>
+    </small>
+</footer>
+
+<div class="scroll-buttons hide">
+    <a class="scroll-top">
+        <img src="/img/wizard_top.png" alt="WIZARD TOP">
+    </a>
+</div>

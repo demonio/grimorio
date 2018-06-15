@@ -1,0 +1,42 @@
+<?php
+View::partial('aside');
+$disabled = ($item->estado == '[PENDIENTE]') ? ' opacity-5 box-specimen' : '';
+?>
+<main class="col s12 m8 l9<?=$disabled?>">
+    <div class="specimen-text">Espécimen</div>
+    <ul class="collection mr50">
+        <li class="collection-item">
+            <label>Grimorio</label>
+            <?=$item->grimorio?>
+        <li>
+        <li class="collection-item">
+            <label>Capitulo</label>
+            <?=$item->capitulo?>
+        </li>
+        <li class="collection-item">
+            <label>Nombre</label>
+            <h3><?=$item->nombre?></h3>
+        </li>
+        <li class="collection-item">
+            <label>Descripción</label>
+            <?=nl2br($item->descripcion)?>
+        </li>
+        <li class="collection-item">
+            <label>Código</label>
+            <?php $ext = pathinfo($item->nombre)['extension'];
+            $ext = ( ! $ext or $ext == 'phtml' ) ? 'php' : $ext;
+            ?>
+            <pre class="line-numbers"><code class="language-<?=$ext?>"><?=str_replace('<', '&lt;', $item->codigo)?></code></pre>
+        </li>
+        <li class="collection-item">
+            <label>Autor</label>
+            <?=$item->autor?>
+        </li>
+    </ul>
+</main>
+
+<div class="actions">
+    <a class="btn-floating load-modal red lighten-1" href="/hechizos/formulario/<?=$item->id?>">
+        <i class="material-icons">edit</i>
+    </a>
+</div>

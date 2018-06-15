@@ -1,0 +1,19 @@
+
+<?php View::partial('aside'); ?>
+
+<div class="col s12 m4 l3">
+    <ul class="collection with-header">
+        <li class="collection-item"><h4 class="blue-text text-darken-1">Últimos <?=count($last_created)?> hechizos</h4></li>
+        <?php foreach ($last_created as $o) : ?>
+            <li class="box-link collection-item">
+                <?=$o->grimorio?>/<?=$o->nombre?><br>
+                <small><i class="material-icons tiny">subdirectory_arrow_right</i> <?=$o->autor?> — <?=date( 'd | m | Y', strtotime($o->creado_at) )?></small>
+                <a href="/hechizos/read/<?=$o->slug?>"></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+<div class="col s12 m4 l3 mv15">
+    <img src="/img/wizard.png" alt="WIZARD" class="responsive-img">
+</div>
